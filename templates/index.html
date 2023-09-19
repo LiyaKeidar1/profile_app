@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/icon.png" type="image/x-icon">
+    <title>Liya Keidar Info Page</title>
+    <style>
+        body {
+            background-image: url('/static/DSC_0736.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Cambria, Ariel;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 50px
+            color: #333;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        label, input {
+            display: block;
+            margin-bottom: 20px;
+            max-width: 370px;
+        }
+
+        input[type="text"],
+        input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            background-color: #abb7d1;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+         .description {
+            white-space: pre-wrap;
+         }
+         .rights {
+            position: absolute;
+            top: 20px; /* Adjust the top position as needed */
+            left: 20px; /* Adjust the left position as needed */
+            background-color: rgba(255, 255, 255, 0.5); /* Background color with transparency */
+            padding: 6px; /* Padding for the text box */
+            border-radius: 5px; /* Optional border radius */
+        }
+</style>
+</head>
+<body>
+    <div class="rights">
+            <p>image by <a href="https://www.instagram.com/photography_ilay/" style="color:#265d85" target="_blank">Ilay Keidar</a></p>
+        </div>
+    <h1 style="font-size: 70px; color: rgb(255, 255, 255, 0.8)" >LIYA KEIDAR</h1>
+    <div style="width: 50%; margin: auto">
+        {% for url in urls %}
+        <div style="padding: 10px; background-color: rgba(255, 255, 255, 0.8); margin: 20px">
+            <a href="{{ url.url }}" style="font-size: 24px; color:#7bb7e3" target="_blank">{{ url.title or url.url }}</a>
+            {% if url.description %}
+             <br> <br> <p class="description"> {{ url.description }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <br>
+    <form action="/submit" method="POST">
+        <label for="url">URL:</label>
+        <input type="url" name="url" id="url" required>
+        <label for="title">Link Title:</label>
+        <input type="text" name="title" id="title">
+        <label for="description">Link Description:</label>
+        <input type="text" name="description" id="description">
+        <button type="submit">Add URL</button>
+    </form>
+
+</body>
+</html>
