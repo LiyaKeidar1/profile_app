@@ -12,22 +12,6 @@ pipeline {
     }
 
     stages {
-        stage('Setup') {
-            steps {
-                script {
-                    sh 'pip install -r requirements.txt'
-                }
-            }
-        }
-
-        stage('Unit Testing') {
-            steps {
-                script {
-                    sh 'pytest test_app.py'
-                }
-            }
-        }
-
         stage('Build') {
             steps {
                 script {
@@ -39,6 +23,14 @@ pipeline {
                     ])
                     def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_NUMBER}", ".")
                     echo 'Docker build completed.'
+                }
+            }
+        }
+
+        stage('Testing') {
+            steps {
+                script {
+                    sh 'pytest test_app.py'
                 }
             }
         }
