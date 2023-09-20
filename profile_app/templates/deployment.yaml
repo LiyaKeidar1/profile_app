@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-app-deployment
+spec:
+  replicas: 2  # Number of replica sets
+  selector:
+    matchLabels:
+      app: profile-app
+  template:
+    metadata:
+      labels:
+        app: profile-app
+    spec:
+      containers:
+        - name: profile-app-container
+          image: liyakeidar1/profileapp  # Docker Hub image name
+          ports:
+            - containerPort: 6544  # Port your app listens on
