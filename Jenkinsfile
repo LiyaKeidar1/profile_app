@@ -8,7 +8,6 @@ pipeline {
     }
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('9d695493-685a-4593-9ce1-834966410c90') // Use the ID of your Docker Hub credentials
         IMAGE_NAME = 'liyakeidar1/profileapp'
     }
 
