@@ -4,7 +4,7 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 # MongoDB connection configuration
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://root:3yGWpZ7jeS@34.78.116.136:27017/")
 db = client["profile-app"]
 url_collection = db["default"]
 
