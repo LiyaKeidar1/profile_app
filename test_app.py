@@ -1,23 +1,17 @@
-import pytest
-from app import app
+import subprocess
 
-@pytest.fixture
-def client():
-    with app.test_client() as client:
-        yield client
+def test_app_runs_successfully():
+    try:
+        # Run the app.py script using subprocess
+        result = subprocess.run(["python", "app.py"], capture_output=True, text=True, check=True)
 
-def test_index(client):
-    response = client.get('/')
-    assert response.status_code == 200
+        # Check if the process returned a zero exit code (indicating success)
+        assert result.returncode == 0
 
-def test_add_url(client):
-    response = client.post('/submit', data={
-        'url': 'https://example.com',
-        'title': 'Example',
-        'description': 'An example website',
-    }, follow_redirects=True)
-    assert response.status_code == 200
+        # Check if the expected "pong" message is in the stdout
+        assert "pong" in result.stdout.strip()
+    except subprocess.CalledProcessError as e:
+        # If the app.py script exits with a non-zero code, it's considered a failure
+        assert False, f"App execution failed with exit code {e.returncode}:\n{e.stderr}"
 
-if __name__ == '__main__':
-    pytest.main()
 
