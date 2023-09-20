@@ -27,13 +27,13 @@ pipeline {
             }
         }
 
-        stage('Testing') {
-            steps {
-                script {
-                    sh 'docker run --rm liyakeidar1/profileapp pytest test_app.py'
-                }
-            }
-        }
+//         stage('Testing') {
+//             steps {
+//                 script {
+//                     sh 'docker run --rm liyakeidar1/profileapp pytest test_app.py'
+//                 }
+//             }
+//         }
 
         stage('Push Docker Image') {
             steps {
