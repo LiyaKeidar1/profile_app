@@ -30,7 +30,8 @@ pipeline {
         stage('Testing') {
             steps {
                 script {
-                    sh 'pytest test_app.py'
+                    sh 'docker run -it --rm liyakeidar1/profileapp pytest test_app.py
+'
                 }
             }
         }
