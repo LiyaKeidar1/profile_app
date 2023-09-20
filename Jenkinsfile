@@ -21,7 +21,7 @@ pipeline {
                         branches: [[name: 'feature_application']],
                         userRemoteConfigs: [[url: 'https://github.com/LiyaKeidar1/profile_app.git']]
                     ])
-                    def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_NUMBER}", ".")
+                    def customImage = docker.build("${IMAGE_NAME}:latest", ".")
                     echo 'Docker build completed.'
                 }
             }
