@@ -8,4 +8,4 @@ spec:
     image: ezezeasy/ez-docker-helm-build:1.41
     imagePullPolicy: Always
     securityContext:
-      privileged: true
+      privileged: true
