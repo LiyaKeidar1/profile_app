@@ -44,7 +44,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
                         echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                        docker push "${IMAGE_NAME}:${env.BUILD_NUMBER}"
+                        docker push "${IMAGE_NAME}:latest"
                         '''
                     }
 
