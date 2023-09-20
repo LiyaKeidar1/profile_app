@@ -31,7 +31,6 @@ pipeline {
             steps {
                 script {
                     sh 'docker run -it --rm liyakeidar1/profileapp pytest test_app.py'
-'
                 }
             }
         }
