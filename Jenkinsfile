@@ -43,7 +43,7 @@ pipeline {
                     // Log in to Docker Hub using credentials
                     withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-styy66din
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                         docker push "${IMAGE_NAME}:latest"
                         '''
                     }
@@ -61,7 +61,7 @@ pipeline {
                     // Log in to Docker Hub using credentials
                     withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-styy66din
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                         helm package profile_app
                         docker push profile_app.tgz https://hub.docker.com/r/liyakeidar1
                         '''
