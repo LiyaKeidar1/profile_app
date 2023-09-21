@@ -63,7 +63,7 @@ pipeline {
                         sh '''
                         echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
                         helm package profile_app
-                        docker push profile_app.tgz https://hub.docker.com/r/liyakeidar1
+                        docker push profile_app-0.1.0.tgz oci://registry-1.docker.io/liyakeidar1
                         '''
                     }
 
