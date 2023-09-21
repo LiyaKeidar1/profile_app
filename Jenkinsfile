@@ -27,13 +27,13 @@ pipeline {
             }
         }
 
-//         stage('Testing') {
-//             steps {
-//                 script {
-//                     sh 'docker run --rm liyakeidar1/profileapp pytest test_app.py'
-//                 }
-//             }
-//         }
+        stage('Testing') {
+            steps {
+                script {
+                    sh 'docker run --rm liyakeidar1/profileapp pytest test_app.py'
+                }
+            }
+        }
 
         stage('Push Docker Image') {
             steps {
@@ -43,12 +43,31 @@ pipeline {
                     // Log in to Docker Hub using credentials
                     withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
-                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-styy66din
                         docker push "${IMAGE_NAME}:latest"
                         '''
                     }
 
                     echo 'Docker push completed.'
+                }
+            }
+        }
+
+        stage('Push Helm package') {
+            steps {
+                script {
+                    echo 'Starting Docker push...'
+
+                    // Log in to Docker Hub using credentials
+                    withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh '''
+                        echo "$PASSWORD" | docker login -u "$USERNAME" --password-styy66din
+                        helm package profile_app
+                        docker push profile_app.tgz https://hub.docker.com/r/liyakeidar1
+                        '''
+                    }
+
+                    echo 'Helm package docker push completed.'
                 }
             }
         }

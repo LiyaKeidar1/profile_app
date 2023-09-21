@@ -1,17 +1,13 @@
-import subprocess
+import pytest
+from app import app
 
-def test_app_runs_successfully():
-    try:
-        # Run the app.py script using subprocess
-        result = subprocess.run(["python", "app.py"], capture_output=True, text=True, check=True)
+@pytest.fixture
+def client():
+    app.config['TESTING'] = True
+    with app.test_client() as client:
+        yield client
 
-        # Check if the process returned a zero exit code (indicating success)
-        assert result.returncode == 0
-
-        # Check if the expected "pong" message is in the stdout
-        assert "pong" in result.stdout.strip()
-    except subprocess.CalledProcessError as e:
-        # If the app.py script exits with a non-zero code, it's considered a failure
-        assert False, f"App execution failed with exit code {e.returncode}:\n{e.stderr}"
-
-
+def test_index(client):
+    # Test if the response for the main route is 200 (OK)
+    rv = client.get('/')
+    assert rv.status_code == 200
