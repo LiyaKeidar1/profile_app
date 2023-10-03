@@ -10,7 +10,7 @@ Project Details:
    - I initiated the project by developing a simple web application that displays my profile with necessary links using Flask, a Python web framework. This application served as the core component for demonstration throughout the project.
 
 2. **Local Kubernetes Cluster Setup**:
-   - To simulate a real-world deployment environment, I configured a local Kubernetes cluster on my personal machine. This cluster served as the foundation for deploying and managing the application.
+   - To simulate a real-world deployment environment, I configured a local Kubernetes cluster on my personal machine using docker desktop. This cluster served as the foundation for deploying and managing the application.
 
 3. **DevOps Tool Selection**:
    - I installed and configured several essential DevOps tools, including:
