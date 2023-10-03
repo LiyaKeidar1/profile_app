@@ -62,8 +62,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'liya_dockerhub_cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         sh '''
                         echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                        helm package profile_app
-                        helm push profile_app-0.1.0.tgz oci://registry-1.docker.io/liyakeidar1
+                        helm package profile_app_package
+                        helm push profile_app_package-0.1.0.tgz oci://registry-1.docker.io/liyakeidar1
                         '''
                     }
 
