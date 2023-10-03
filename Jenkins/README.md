@@ -30,6 +30,21 @@
 	 
 	 Now, you can find jenkins on **localhost:8080**
 
+# Jenkins Pipeline
+
+1. Open **localhost:8080** and create a new simple pipeline.
+
+
+2. Connect your pipeline to your github and create a **webhook** on github in the project's settings.
+The webhook performs a run of the pipeline every time I push new commits.
+
+- Jenkins looks for a Jenkinsfile and runs on various stages (test, build, push, etc.)
+ At the end of the pipeline we should be able to see an **image** and a **helm package** on **dockerhub**.
+
+
+
+
+
 # Cleanup
 
 From command line:
